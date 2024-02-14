@@ -4,11 +4,17 @@ import PropTypes from 'prop-types'
 
 
 export class News extends Component {
-    static defaultProps={
-         country:'in',
-         pageSize:8,
-         category:'general',
-    }
+  static defaultProps = {
+    country: 'in',
+    pageSize: 8,
+    category: 'general'
+  }
+
+  static propTypes = {
+    country: PropTypes.string,
+    pageSize:PropTypes.number,
+    category:PropTypes.string
+  }
 
     static PropType={
       country:PropTypes.string,
@@ -26,7 +32,7 @@ export class News extends Component {
   }
 
   async componentDidMount(){
-    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=c76f35a40e4c45eaba237801eb3b0217&pageSize=${this.props.pageSize}`;
+    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=c76f35a40e4c45eaba237801eb3b0217&pageSize=${this.props.pageSize}`;
     let data=await fetch(url); 
     let parsedata=await data.json();
     console.log(parsedata);
